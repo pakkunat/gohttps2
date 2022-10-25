@@ -16,8 +16,7 @@ func handler(writer http.ResponseWriter, request *http.Request) {
 // main function.
 func main() {
 	// Subscribe handler.
-	mux := 
-	//http.HandleFunc("/", handler)
+	http.HandleFunc("/", handler)
 	// Listen for port 443.
-	http.ListenAndServeTLS("", "/usr/local/bin/go/https2/certificate.crt", "/usr/local/bin/go/https2/private.key", handler)
+	http.ListenAndServeTLS("", "/usr/local/bin/go/https2/certificate.crt", "/usr/local/bin/go/https2/private.key", nil)
 }
