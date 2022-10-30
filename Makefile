@@ -4,6 +4,9 @@ EXE = $(shell which go)
 # binary name
 BIN = https2
 
+# library path
+LIB = github.com/lib/pq
+
 # certification files
 CRT = certificate.crt 
 KEY = private.key
@@ -26,12 +29,16 @@ DST = $(GDR)/$(BIN)
 
 # task
 # compile
-$(BIN):
+$(BIN): clean fmt preprocess
 	@$(EXE) build
 
 # format
 fmt:
 	@$(EXE)fmt -w $(SRC)
+
+# preprocess
+preprocess:
+	@$(EXE) get $(LIB) 
 
 # install
 install:
@@ -60,4 +67,9 @@ run:
 
 # clean
 clean:
+ifeq ("$(shell ls | grep $(BIN))", "")
 	@rm $(BIN)
+endif
+
+#.PHONY
+#.PHONY:	preprocess
