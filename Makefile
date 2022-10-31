@@ -67,7 +67,7 @@ run:
 
 # clean
 clean:
-ifeq ("$(shell ls | grep $(BIN))", "")
+ifeq ("$(shell ls | grep -x $(BIN))", "$(BIN)")
 	@rm $(BIN)
 endif
 
