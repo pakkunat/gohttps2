@@ -435,5 +435,8 @@ func main() {
 	http.HandleFunc("/layout", layout)
 
 	// Listen for port 443.
-	server.ListenAndServeTLS("./certificate.crt", "private.key")
+	e := server.ListenAndServeTLS("certificate.crt", "private.key")
+	if e != nil {
+		fmt.Println(e)
+	}
 }
